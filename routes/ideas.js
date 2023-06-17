@@ -1,5 +1,6 @@
-const express = require('express');
-const port = 5000;
+const express = require('express'); 
+const router = express.Router();
+
 const ideas = [
     {
         id: 1,
@@ -24,20 +25,20 @@ const ideas = [
     },
 ]
 
-const app = express();
-const cors = require("cors")
-app.use(
-    cors({
-        origin: "*",
-    })
-)
+// Get all ideas
+router.get('/', (req, res) => {
+    res.json({success: true, data: ideas});
+});
 
-app.get('/', (req, res) => {
-    res.json({message: 'Welcome to the RandomIdeas API'});
-}); 
+// Get single idea
+router.get('/:id', (req, res) => {
+    const idea = ideas.find((idea) => idea.id === +req.params.id)
 
-const ideasRouter = require('./routes/ideas');
+    if(!idea) {
+        return res.status(404).json({success:false, error: 'Resource not found'})
+    }
 
-app.use('/api/ideas', ideasRouter);
+    res.json({success: true, data: idea});
+});
 
-app.listen(port, () => console.log(`Server listening on  port ${port}`));
+module.exports = router;

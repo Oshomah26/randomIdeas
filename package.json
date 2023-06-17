@@ -1,0 +1,15 @@
+{
+  "name": "randomideas",
+  "version": "1.0.0",
+  "description": "Idea sharing app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Oshomah Abubakar",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

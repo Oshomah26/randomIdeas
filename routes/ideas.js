@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Idea = require('../models/Ideas');
 
-
 // Get all ideas
 router.get('/', async (req, res) => {
     try {
@@ -63,6 +62,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+
 // Delete an idea
 router.delete('/:id', async (req, res) => {
     try {
@@ -74,4 +74,5 @@ router.delete('/:id', async (req, res) => {
     }
     
 });
+
 module.exports = router;

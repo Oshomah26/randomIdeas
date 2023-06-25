@@ -17,6 +17,13 @@ class IdeaForm {
         }
 
         console.log(idea);
+
+        //Clear fields
+        this._form.elements.text.value = '';
+        this._form.elements.tag.value = '';
+        this._form.elements.username.value = '';
+
+        document.dispatchEvent(new Event('closemodal'))
     }
         render() {
             this._formModal.innerHTML = ` 

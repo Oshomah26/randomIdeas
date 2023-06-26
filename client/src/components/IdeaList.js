@@ -1,4 +1,4 @@
-import IdeaAPI from "../services/ideaAPI";
+import IdeaAPI from "../services/IdeasAPI";
 
 class IdeaList {
     constructor(){
@@ -23,6 +23,11 @@ class IdeaList {
         } catch (error) {
             console.log(error); 
         }
+    }
+
+    addIdeaToList(idea) {
+        this._ideas.push(idea);
+        this.render();
     }
 
     getTagClass(tag) {

@@ -45,6 +45,25 @@ router.post('/', async (req, res) => {
 // Update an idea
 router.put('/:id', async (req, res) => {
     try {
+        const idea = await Idea.findById(req.params.id);
+
+        // Username match
+        if(idea.username === req.body.username){
+            const updatedIdea = await Idea.findByIdAndUpdate(req.params.id,
+                {
+                   $set:{
+                       text: req.body.text,
+                       tag: req.body.tag
+                   }, 
+                },
+                   {new: true},
+               );
+               return res.json({success:true, data: updatedIdea})
+        }
+
+        // Username doesn't match
+        res.status(403).json({success: false, error: 'You are not authorized to update this resource'});
+
         const updatedIdea = await Idea.findByIdAndUpdate(req.params.id,
          {
             $set:{
@@ -66,8 +85,18 @@ router.put('/:id', async (req, res) => {
 // Delete an idea
 router.delete('/:id', async (req, res) => {
     try {
+        const idea = await Idea.findById(req.params.id);
+
+        // Match the usernames 
+        if(idea.username === req.body.username){
         await Idea.findByIdAndDelete(req.params.id);
-        res.json({success: true, data: {} })
+        return res.json({success: true, data: {} });
+        } 
+
+        // usernames do not match
+        res.status(403).json({success: false, error: 'You are not authorized to delete this resource'});
+
+
     } catch (error) {
         console.log(error);
         res.status(500).json({success: false, error: 'Something went wrong'});

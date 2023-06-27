@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": "webpack"
   },
   "author": "Oshomah Abubakar",
   "license": "ISC",
@@ -16,6 +17,9 @@
     "mongoose": "^7.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "webpack-dev-middleware": "^6.1.1",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-hot-middleware": "^2.25.4"
   }
 }
